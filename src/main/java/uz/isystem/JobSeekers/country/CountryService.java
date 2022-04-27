@@ -1,10 +1,7 @@
 package uz.isystem.JobSeekers.country;
 
 import lombok.Data;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.CDATASection;
-
 import java.util.List;
 
 @Data
@@ -20,9 +17,11 @@ public class CountryService {
     }
 
     public List<CountryDto> getAll() {
+        return null;
     }
 
     public CountryDto getOne(Integer id) {
+        return null;
     }
 
     public void update(Integer id, CountryDto countryDto) {
