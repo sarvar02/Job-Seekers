@@ -1,4 +1,5 @@
-package uz.isystem.JobSeekers.country;
+package uz.isystem.JobSeekers.userType;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,17 +9,15 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = ("countries"))
-public class Country {
+@Entity(name = ("user_types"))
+public class UserType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    private Integer id;
 
     @Column(name = ("name"))
     private String name;
-
-    @Column(name = ("city"))
-    private String city;
 
     @Column(name = ("status"))
     private Boolean status;
@@ -34,5 +33,3 @@ public class Country {
     @Column(name = ("deleted_at"))
     private LocalDateTime deletedAt;
 }
-
-

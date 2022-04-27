@@ -13,7 +13,7 @@ public class CountryController {
     private final CountryService countryService;
 
 // |- TODO: create function -|
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<?> create(@RequestBody CountryDto countryDto){
         countryService.create(countryDto);
         return new ResponseEntity<>("Ok created!", HttpStatus.CREATED);

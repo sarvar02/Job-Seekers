@@ -1,25 +1,19 @@
-package uz.isystem.JobSeekers.country;
-import com.fasterxml.jackson.annotation.JsonInclude;
+package uz.isystem.JobSeekers.userType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(value = JsonInclude.Include.NON_NULL)
-public class CountryDto {
+@AllArgsConstructor
+public class UserTypeDto {
 
-    public Integer id;
+    private Integer id;
 
-    @NotBlank(message = ("Name is mandatory!"))
+    @NotBlank(message = "User Type name is mandatory!")
     private String name;
-
-    @NotBlank(message = ("City is mandatory!"))
-    private String city;
 
     private Boolean status;
 
