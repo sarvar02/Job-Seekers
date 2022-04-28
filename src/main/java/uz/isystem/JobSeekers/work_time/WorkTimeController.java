@@ -36,7 +36,7 @@ public class WorkTimeController {
         return new ResponseEntity<>("Work time successfully deleted !", HttpStatus.OK);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(workTimeService.getAllWorkTimes());
     }
