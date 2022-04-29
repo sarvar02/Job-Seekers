@@ -10,6 +10,7 @@ import uz.isystem.JobSeekers.userType.UserType;
 import uz.isystem.JobSeekers.work_time.WorkTime;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -85,5 +86,17 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "country_id", insertable = false, updatable = false)
     private Country country;
+
+    @Column(name = "status")
+    private Boolean status;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
 }

@@ -8,7 +8,10 @@ import uz.isystem.JobSeekers.country.Country;
 import uz.isystem.JobSeekers.subject.Subject;
 import uz.isystem.JobSeekers.userType.UserType;
 import uz.isystem.JobSeekers.work_time.WorkTime;
+
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -40,4 +43,8 @@ public class UserDto {
     private Set<Subject> subjects;
     private Integer countryId;
     private Country country;
+    private Boolean status;
+    private LocalDateTime createdAt;
+    private LocalDateTime deletedAt;
+    private LocalDateTime updatedAt;
 }
