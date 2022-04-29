@@ -1,5 +1,9 @@
 package uz.isystem.JobSeekers.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import uz.isystem.JobSeekers.country.Country;
 import uz.isystem.JobSeekers.subject.Subject;
 import uz.isystem.JobSeekers.userType.UserType;
@@ -8,6 +12,10 @@ import uz.isystem.JobSeekers.work_time.WorkTime;
 import javax.persistence.*;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = ("users"))
 public class User {
@@ -69,7 +77,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id")
     )
-    private Set<Subject> subject;
+    private Set<Subject> subjects;
 
     @Column(name = ("country_id"))
     private Integer countryId;
