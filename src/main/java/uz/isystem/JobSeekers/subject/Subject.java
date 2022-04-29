@@ -19,12 +19,7 @@ public class Subject {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany()
-    @JoinTable(
-            name = ("user_subjects"),
-            joinColumns = @JoinColumn(name = ("subject_id")),
-            inverseJoinColumns = @JoinColumn(name = ("user_id"))
-    )
+    @ManyToMany(mappedBy = ("subjects"))
     private Set<User> userSet;
 
     @Column(name = ("name"))
