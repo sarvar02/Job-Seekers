@@ -1,12 +1,13 @@
 package uz.isystem.JobSeekers.subject;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.isystem.JobSeekers.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +18,14 @@ public class Subject {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToMany()
+    @JoinTable(
+            name = ("user_subjects"),
+            joinColumns = @JoinColumn(name = ("subject_id")),
+            inverseJoinColumns = @JoinColumn(name = ("user_id"))
+    )
+    private Set<User> userSet;
 
     @Column(name = ("name"))
     private String name;
