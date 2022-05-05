@@ -1,15 +1,17 @@
 package uz.isystem.JobSeekers.country;
 
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.isystem.JobSeekers.exception.ServerBadRequestException;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class CountryService {
 
     private final CountryRepository countryRepository;
@@ -55,8 +57,8 @@ public class CountryService {
 
     // |- SECONDARY FUNCTIONS -|
 
-    public Country getEntity(Integer id){
+    public Country getEntity(Integer id) {
         return countryRepository.findByIdAndDeletedAtIsNull(id)
-                .orElseThrow(()-> new ServerBadRequestException("Country not found!"));
+                .orElseThrow(() -> new ServerBadRequestException("Country not found!"));
     }
 }
