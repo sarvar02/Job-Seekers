@@ -17,13 +17,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @GetMapping("/save")
-    public ResponseEntity<?> saveUser(@RequestBody UserDto userDto){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/user/save").toUriString());
-        userService.createUser(userDto);
-        return ResponseEntity.created(uri).body("USER CREATED !");
-    }
-
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto){
         userService.createUser(userDto);
@@ -41,6 +34,13 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable Integer id){
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/role/save")
+    public ResponseEntity<?> saveRole(@RequestBody Role role){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/role/save").toUriString());
+        userService.saveRole(role);
+        return ResponseEntity.ok("NEW ROLE CREATED !");
     }
 
 }

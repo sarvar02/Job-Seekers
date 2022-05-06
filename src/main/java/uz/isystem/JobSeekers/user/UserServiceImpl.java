@@ -89,6 +89,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void saveRole(Role role) {
+        log.info("Saving new role {} to database", role.getName());
+        roleRepository.save(role);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
