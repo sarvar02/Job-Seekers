@@ -12,4 +12,5 @@ public interface UserService {
     List<UserDto> getAllUsers();
     Role getRoleByName(String roleName);
     User getUserByUsername(String username);
+    void saveRole(Role role);
 }
