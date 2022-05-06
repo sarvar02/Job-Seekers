@@ -2,6 +2,9 @@ package uz.isystem.JobSeekers.user;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.isystem.JobSeekers.exception.ServerBadRequestException;
 
@@ -11,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -69,5 +72,10 @@ public class UserService {
     public User getEntity(Integer id){
         return userRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new ServerBadRequestException("User not found !"));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
