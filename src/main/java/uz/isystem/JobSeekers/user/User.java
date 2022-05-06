@@ -6,11 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.isystem.JobSeekers.country.Country;
 import uz.isystem.JobSeekers.subject.Subject;
+import uz.isystem.JobSeekers.user.role.Role;
 import uz.isystem.JobSeekers.userType.UserType;
 import uz.isystem.JobSeekers.work_time.WorkTime;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 @Getter
@@ -87,8 +90,11 @@ public class User {
     @JoinColumn(name = "country_id", insertable = false, updatable = false)
     private Country country;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
+
     @Column(name = "status")
-    private Boolean status;
+    private Boolean status = false;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
