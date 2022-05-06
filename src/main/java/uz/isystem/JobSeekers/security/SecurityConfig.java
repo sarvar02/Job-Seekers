@@ -18,6 +18,7 @@ import uz.isystem.JobSeekers.security.filter.CustomAuthenticationFilter;
 import uz.isystem.JobSeekers.security.filter.CustomAuthorizationFilter;
 
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
@@ -41,8 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/login", "/api/user/token/refresh", "/api/register",
-                        "/api/user/role/create", "/api/validation/**").permitAll()
+                .antMatchers("/api/login", "/api/token/refresh", "/api/register",
+                        "/api/user/role/save", "/api/validation/**").permitAll()
+                .antMatchers(POST, "/api/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest().authenticated();
 

