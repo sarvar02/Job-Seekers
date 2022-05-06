@@ -1,10 +1,6 @@
 package uz.isystem.JobSeekers.user;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.isystem.JobSeekers.exception.ServerBadRequestException;
 
@@ -21,13 +17,13 @@ public class UserService {
 
 //    Get one user
 
-    public UserDto getUserById(Integer id){
+    public UserDto getUserById(Integer id) {
         return userMapper.modelToDto(getEntity(id));
     }
 
 //    Create user
 
-    public void createUser(UserDto userDto){
+    public void createUser(UserDto userDto) {
         User user = userMapper.dtoToModel(userDto);
         user.setStatus(true);
         user.setCreatedAt(LocalDateTime.now());
@@ -36,7 +32,7 @@ public class UserService {
 
 //    Update user
 
-    public void update(Integer id, UserDto userDto){
+    public void update(Integer id, UserDto userDto) {
         User user = getEntity(id);
 
         User newUser = userMapper.dtoToModel(userDto);
@@ -50,7 +46,7 @@ public class UserService {
 
 //    Delete user
 
-    public void deleteUser(Integer id){
+    public void deleteUser(Integer id) {
         User user = getEntity(id);
         user.setDeletedAt(LocalDateTime.now());
         userRepository.save(user);
@@ -58,20 +54,16 @@ public class UserService {
 
 //    Get all users
 
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAllUsers() {
         List<User> userList = userRepository.findAllByDeletedAtIsNull();
-        if(userList.isEmpty())
-            throw new ServerBadRequestException("User not found !");
+        if (userList.isEmpty()) throw new ServerBadRequestException("User not found !");
 
-        return userList.stream()
-                .map(user -> userMapper.modelToDto(user))
-                .collect(Collectors.toList());
+        return userList.stream().map(user -> userMapper.modelToDto(user)).collect(Collectors.toList());
     }
 
 
-    public User getEntity(Integer id){
-        return userRepository.findByIdAndDeletedAtIsNull(id)
-                .orElseThrow(() -> new ServerBadRequestException("User not found !"));
+    public User getEntity(Integer id) {
+        return userRepository.findByIdAndDeletedAtIsNull(id).orElseThrow(() -> new ServerBadRequestException("User not found !"));
     }
 
 }
