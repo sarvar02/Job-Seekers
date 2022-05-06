@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -74,8 +74,4 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new ServerBadRequestException("User not found !"));
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
 }
