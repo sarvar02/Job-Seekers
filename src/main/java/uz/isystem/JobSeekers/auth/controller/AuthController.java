@@ -1,5 +1,4 @@
 package uz.isystem.JobSeekers.auth.controller;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -12,7 +11,6 @@ import uz.isystem.JobSeekers.auth.service.AuthService;
 import uz.isystem.JobSeekers.user.User;
 import uz.isystem.JobSeekers.user.UserService;
 import uz.isystem.JobSeekers.user.role.Role;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -21,7 +19,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
